@@ -7,7 +7,8 @@ SNAKE_COLOR =  (0, 0, 200)
 SNAKE_SIZE = 50
 SNAKE_SPEED = 10
 
-class Snake_Head:
+# ЪуЪ!!!
+class Segment:
 
     def __init__(self, color, size, speed,display,x,y,index):
         self.SIZE = size
@@ -18,7 +19,7 @@ class Snake_Head:
         self.DISPLAY = display
         self.index = index
 
-    cord_x,cord_y = (100, 350)
+        self.cord_x,self.cord_y = (100+100*self.index, 350+200*self.index)
     list_value = [False, False, False, False]
     list_value_old = None
 
@@ -56,10 +57,12 @@ class Snake_Head:
         snake_surface.fill('green')
         self.DISPLAY.blit(snake_surface, snake_cords)
 
+class Apple:
+    pass
 
 
-
-snake = Snake_Head(SNAKE_COLOR,SNAKE_SIZE,SNAKE_SPEED,DISPLAY,X,Y,0)
+snake = Segment(SNAKE_COLOR,SNAKE_SIZE,SNAKE_SPEED,DISPLAY,X,Y,0)
+# snake1 = Segment(SNAKE_COLOR,SNAKE_SIZE,SNAKE_SPEED,DISPLAY,X,Y,1)
 time = pygame.time.Clock()
 run = True
 while run:
@@ -69,15 +72,20 @@ while run:
         elif event.type == pygame.KEYDOWN:
             if event.key == pygame.K_UP:
                 snake.set_value(1)
+                # snake1.set_value(1)
             elif event.key == pygame.K_DOWN:
                 snake.set_value(2)
+                # snake1.set_value(2)
             elif event.key == pygame.K_LEFT:
                 snake.set_value(0)
+                # snake1.set_value(0)
             elif event.key == pygame.K_RIGHT:
                 snake.set_value(3)
+                # snake1.set_value(3)
 
     DISPLAY.fill('black')
     snake.update()
+    # snake1.update()
 
     time.tick(60)
     pygame.display.update()
